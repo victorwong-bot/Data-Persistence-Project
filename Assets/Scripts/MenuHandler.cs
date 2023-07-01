@@ -10,6 +10,7 @@ public class MenuHandler : MonoBehaviour
     public TMP_InputField inputField;
     public TextMeshProUGUI inputText;
     public TextMeshProUGUI bestScoreText;
+    public TextMeshProUGUI titleText;
 
     void Start()
     {
