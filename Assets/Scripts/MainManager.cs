@@ -26,13 +26,15 @@ public class MainManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DataManager.Instance.LoadData();
         if (DataManager.Instance == null)
         {
+            BackToMenu();
             m_HighestPoints = 0;
+            
         }
         else 
         {
+            DataManager.Instance.LoadData();
             m_HighestPoints = DataManager.Instance.playerMaxScore;
             ScoreBestText.text = $"Best Score : {DataManager.Instance.playerMaxName} : {DataManager.Instance.playerMaxScore}";   
         }
