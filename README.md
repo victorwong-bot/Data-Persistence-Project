@@ -2,7 +2,7 @@
 Junior Programmer Pathway - Data Persistence
 
 It is a project for the "Manage scene flow and data" mission of the Junior Programmer Pathway on Unity Learn.
-Feel free to play it on [Unity Play]()
+Feel free to play it on [Unity Play](https://play.unity.com/mg/other/build-ax3-2)
 
 # Features to be added in the feature
 * sound effects
