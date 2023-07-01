@@ -15,6 +15,7 @@ public class MainManager : MonoBehaviour
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI ScoreBestText;
     public GameObject GameOverText;
+    public GameObject HighScoreText;
     
     private bool m_Started = false;
     private int m_Points;
@@ -94,6 +95,7 @@ public class MainManager : MonoBehaviour
             DataManager.Instance.playerMaxName = DataManager.Instance.playerName;
             ScoreBestText.text = $"Best Score : {DataManager.Instance.playerMaxName} : {DataManager.Instance.playerMaxScore}";
             DataManager.Instance.SaveData();
+            HighScoreText.SetActive(true);
         }
         
     }
