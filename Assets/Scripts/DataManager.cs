@@ -13,6 +13,7 @@ public class DataManager : MonoBehaviour
     public static DataManager Instance;
 
     public string playerName;
+    public string playerMaxName;
     public int playerMaxScore;
 
     void Awake()
@@ -39,11 +40,12 @@ public class DataManager : MonoBehaviour
     public void SaveData()
     {
         PlayerData data = new PlayerData();
-        data.playerName = playerName;
+        data.playerName = playerMaxName;
         data.playerScore = playerMaxScore;
 
         string json = JsonUtility.ToJson(data);
         string path = Application.persistentDataPath + "/savedata.json";
+
         File.WriteAllText(path, json);
     }
 
@@ -56,7 +58,7 @@ public class DataManager : MonoBehaviour
             string json = File.ReadAllText(path);
             
             PlayerData data = JsonUtility.FromJson<PlayerData>(json);
-            playerName = data.playerName;
+            playerMaxName = data.playerName;
             playerMaxScore = data.playerScore;
         }
     }

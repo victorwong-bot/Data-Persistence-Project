@@ -18,7 +18,7 @@ public class MainManager : MonoBehaviour
     
     private bool m_Started = false;
     private int m_Points;
-    private static int m_HighestPoints = 0;
+    private static int m_HighestPoints;
     
     private bool m_GameOver = false;
 
@@ -27,7 +27,15 @@ public class MainManager : MonoBehaviour
     void Start()
     {
         DataManager.Instance.LoadData();
-        ScoreBestText.text = $"Best Score : {DataManager.Instance.playerName} : {DataManager.Instance.playerMaxScore}";   
+        if (DataManager.Instance == null)
+        {
+            m_HighestPoints = 0;
+        }
+        else 
+        {
+            m_HighestPoints = DataManager.Instance.playerMaxScore;
+            ScoreBestText.text = $"Best Score : {DataManager.Instance.playerMaxName} : {DataManager.Instance.playerMaxScore}";   
+        }
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
         
@@ -62,7 +70,6 @@ public class MainManager : MonoBehaviour
         else if (m_GameOver)
         {
             HighestPoint(m_Points);
-            DataManager.Instance.SaveData();
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -82,7 +89,9 @@ public class MainManager : MonoBehaviour
         {
             m_HighestPoints = point;
             DataManager.Instance.playerMaxScore = m_HighestPoints;
-            ScoreBestText.text = $"Best Score : {DataManager.Instance.playerName} : {DataManager.Instance.playerMaxScore}";
+            DataManager.Instance.playerMaxName = DataManager.Instance.playerName;
+            ScoreBestText.text = $"Best Score : {DataManager.Instance.playerMaxName} : {DataManager.Instance.playerMaxScore}";
+            DataManager.Instance.SaveData();
         }
         
     }
